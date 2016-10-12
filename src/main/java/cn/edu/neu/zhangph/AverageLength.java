@@ -13,15 +13,15 @@ public class AverageLength {
 //		String path3 = "/home/zhangph/workspace/data/changedata.txt";
 		try {
 //			traverseFolder(path);
-//			changeData("./t-drive.txt");
-//			lettleDataTest("./t-drive-all.txt");
+//			changeData("./t-drive-10-12.txt");
+			lettleDataTest("./t-drive-all.txt");
 			
 			//read zip file
-			String file = "F:/program/java/data/t-drive";
-			traverseFolder(file);
+//			String file = "F:/program/java/data/t-drive";
+//			traverseFolder(file);
 			
 			//average length of trajectory data set
-//			String t_driver = "F:/program/java/knnt-final/knnt-singleton/data/t-drive-data.txt";
+//			String t_driver = "./t-drive-10-12.txt";
 //			System.out.println("T-Drive average length of trajectory "  + averageLen(t_driver));
 //			String geolife = "F:/program/java/knnt-final/knnt-singleton/data/geolife-data.txt";
 //			System.out.println("Geolife average length of trajectory "  + averageLen(geolife));
@@ -38,9 +38,9 @@ public class AverageLength {
 		if(file == null ) return 0;
 		BufferedReader buf = new BufferedReader(new FileReader(file));
 		//skip the head just for geolife
-		for (int i = 0; i < 6; i++) {
-			buf.readLine();
-		}
+//		for (int i = 0; i < 6; i++) {
+//			buf.readLine();
+//		}
 		
 		String line = null;
 		long flag = 0l;
@@ -141,12 +141,12 @@ public class AverageLength {
 	
 	private static void lettleDataTest(String path3) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(path3));
-		FileWriter fw = new FileWriter("t-drive-6000.txt");
+		FileWriter fw = new FileWriter("t-drive-10.txt");
 		String regex = ",";
 //		String tmp = "";
 		int count  = 0;
 		int flag = 0;
-		while(count < 6000){
+		while(count < 1000){
 			String line= bufferedReader.readLine();
 			StringTokenizer stk = new StringTokenizer(line, regex);
 			int id = Integer.parseInt(stk.nextToken());
@@ -154,7 +154,7 @@ public class AverageLength {
 			flag = id;
 			String x = stk.nextToken();
 			String y = stk.nextToken();
-			fw.write(line + "\n");
+			if(count > 990)fw.write(line + "\n");
 //			System.out.println(count);
 		}
 		
@@ -173,6 +173,7 @@ public class AverageLength {
 		while((line= bufferedReader.readLine()) != null){
 			StringTokenizer stk = new StringTokenizer(line, regex);
 			String id = stk.nextToken();
+			stk.nextToken();
 			if(!tmp.equals(id)) count++;
 			tmp = id;
 			String x = stk.nextToken();
