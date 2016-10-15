@@ -27,8 +27,13 @@ public class CommonArgs {
 		/*
 		 * 0. Create r-tree for index
 		 */
+		long start = System.currentTimeMillis();
+		
 		RTree<Integer, Geometry> tree = CreateTree.createTree(file);
 		
+		long end = System.currentTimeMillis();
+		
+		System.out.println("create tree time is " + (end - start));
 		
 		for(int algorithm = 0; algorithm < 5; algorithm++){
 			System.out.println("algorithm : " + algorithm);
